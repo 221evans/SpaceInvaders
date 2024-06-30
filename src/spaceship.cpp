@@ -4,7 +4,7 @@ Spaceship::Spaceship()
 {
     image = LoadTexture("Graphics/spaceship.png");
     position.x = GetScreenWidth() / 2 - image.width / 2;
-    position.y = GetScreenHeight() - image.height -200;
+    position.y = GetScreenHeight() - image.height -120;
     lastFireTime = 0;
 }
 
@@ -51,7 +51,7 @@ Rectangle Spaceship::getRect()
 
 void Spaceship::Reset()
 {
-    position.x = GetScreenWidth() - image.width / 2.0f;
-    position.y = GetScreenHeight() - image.height - 100;
+    position.x = GetScreenWidth() / 2 - image.width / 2;
+    position.y = GetScreenHeight() - image.height -120;
     lasers.clear();
 }
