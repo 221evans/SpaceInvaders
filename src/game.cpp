@@ -130,10 +130,34 @@ void Game::CheckforCollisions()
         laser.active = false;
     }
 
-   
-  
-
 }
+ // Alien lasers
+
+ for(auto& laser: alienLasers)
+    {
+        if(CheckCollisionRecs(laser.GetRect(), spaceship.getRect()))
+        {
+            laser.active = false;
+            std::cout << "Spaceship hit!" << std::endl;
+        }
+
+        for (auto& obstacle: obstacles)
+        {
+            auto it = obstacle.blocks.begin();
+            while(it != obstacle.blocks.end())
+            {
+                if(CheckCollisionRecs(it -> GetRect(), laser.GetRect()))
+                {
+                        it = obstacle.blocks.erase(it);
+                        laser.active = false;
+                }
+                else
+                {
+                        ++it;
+                }
+            }
+        }
+    }
     
 }
 
