@@ -19,6 +19,8 @@ Game::~Game()
 
 void Game::Update()
 {
+    MoveAliens();
+    AlienShootLaser();
 
     double currentTime = GetTime();
     if(currentTime - timeLastSpawn > mysteryShipSpawnInterval)
@@ -33,16 +35,15 @@ void Game::Update()
         laser.Update();
     }
 
-    MoveAliens();
-
     DeleteInactiveLasers();
    
     for(auto &laser : alienLasers)
     {
         laser.Update();
     }
-    AlienShootLaser();
+    
     mysteryShip.Update();
+    
     CheckforCollisions();
 }
 
@@ -156,6 +157,30 @@ void Game::CheckforCollisions()
                         ++it;
                 }
             }
+        }
+    }
+
+    // Alien collisions with obstacles
+    for(auto& alien: aliens)
+    {
+        for (auto& obstacle: obstacles)
+        {
+            auto it = obstacle.blocks.begin();
+            while(it != obstacle.blocks.end())
+            {
+                if(CheckCollisionRecs(it -> GetRect(), alien.GetRect()))
+                {
+                        it = obstacle.blocks.erase(it);
+                }
+                else
+                {
+                        ++it;
+                }
+            }
+        }
+        if(CheckCollisionRecs(alien.GetRect(), spaceship.getRect()))
+        {
+            std::cout << "Alien hit Spaceship!" << std::endl;
         }
     }
     
