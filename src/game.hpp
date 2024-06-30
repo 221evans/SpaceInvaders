@@ -29,4 +29,5 @@ class Game {
             float timeLastAlienFired;
             float mysteryShipSpawnInterval;
             float timeLastSpawn;
+            int lives;
 };

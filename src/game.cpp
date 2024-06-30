@@ -10,6 +10,7 @@ Game::Game()
     timeLastAlienFired = 0;
     timeLastSpawn = 0;
     mysteryShipSpawnInterval = GetRandomValue(10,20);
+    lives = 3;
 }
 
 Game::~Game()
@@ -43,7 +44,7 @@ void Game::Update()
     }
     
     mysteryShip.Update();
-    
+
     CheckforCollisions();
 }
 
@@ -200,7 +201,9 @@ void Game::DeleteInactiveLasers()
            ++it;
        }
         // delete inactive alien lasers
-       for(auto it = alienLasers.begin(); it != alienLasers.end();)
+      
+   }
+    for(auto it = alienLasers.begin(); it != alienLasers.end();)
        {
            if(!it->active)
            {
@@ -211,7 +214,6 @@ void Game::DeleteInactiveLasers()
                ++it;
            }
        }
-   }
 }
 
 std::vector<Obstacle> Game::CreateObstacles()
