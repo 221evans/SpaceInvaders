@@ -12,11 +12,15 @@ class Game {
         void Draw();
         void HandleInput();
         void CheckforCollisions();
+        bool run;
     private:
             void DeleteInactiveLasers();
             void MoveAliens();
             void MoveDownAliens(int distance);
             void AlienShootLaser();
+            void GameOver();
+            void Reset();
+            void InitGame();
             std::vector<Obstacle> CreateObstacles();
             std::vector<Alien> CreateAliens();
             Spaceship spaceship;
