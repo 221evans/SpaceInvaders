@@ -14,6 +14,10 @@ class Game {
         void CheckforCollisions();
         bool run;
         int lives;
+        int score;
+        int highscore;
+        Music music;
+        Sound explosionSound;
     private:
             void DeleteInactiveLasers();
             void MoveAliens();
@@ -22,6 +26,9 @@ class Game {
             void GameOver();
             void Reset();
             void InitGame();
+            void CheckForHighScore();
+            void SaveHighScoreToFile(int highscore);
+            int LoadHighScoreFromFile();
             std::vector<Obstacle> CreateObstacles();
             std::vector<Alien> CreateAliens();
             Spaceship spaceship;

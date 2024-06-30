@@ -14,6 +14,7 @@ class Spaceship {
         Rectangle getRect();
         void Reset();
         std::vector<Laser> lasers;
+        Sound laserSound;
         
         
     private:
